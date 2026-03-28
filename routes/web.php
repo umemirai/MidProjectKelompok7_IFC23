@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Langsung memanggil halaman dashboard saat project dijalankan
+// Langsung panggil file yang ada di folder components
 Route::get('/', function () {
-    return view('pages.admin.dashboard');
+    return view('components.admin-layout');
 });
