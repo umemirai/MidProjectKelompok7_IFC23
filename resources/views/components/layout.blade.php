@@ -18,18 +18,12 @@
 <body class="bg-slate-50 text-slate-800" x-data="{ sidebarOpen: true, activeMenu: 'dashboard' }">
 
     <div class="flex h-screen overflow-hidden">
-        {{-- Sidebar --}}
         <x-sidebar />
 
         <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
-            {{-- Header --}}
             <x-header />
 
-            {{-- Main Scrollable Area --}}
             <div class="flex-1 overflow-y-auto p-4 lg:p-8">
-                {{ $slot }}
-
-                {{-- Footer --}}
                 <x-footer />
             </div>
         </main>
