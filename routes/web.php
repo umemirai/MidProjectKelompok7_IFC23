@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Langsung panggil file yang ada di folder components
+// Biarkan halaman utama memanggil dashboard.blade.php
 Route::get('/', function () {
-    return view('components.admin-layout');
+    return view('dashboard'); 
 });

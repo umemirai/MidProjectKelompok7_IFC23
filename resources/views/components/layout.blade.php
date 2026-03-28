@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Admin Panel - Blue Accent</title>
+    <title>{{ $title ?? 'Modern Admin Panel' }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -16,25 +16,34 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800" x-data="{ sidebarOpen: true, activeMenu: 'dashboard' }">
+
     <div class="flex h-screen overflow-hidden">
-        ```
+        {{-- Sidebar --}}
+        <x-sidebar />
 
----
+        <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            {{-- Header --}}
+            <x-header />
 
-### 2. Bagian Sidebar (Menu Samping)
-Ini adalah kolom tetap di sebelah kiri yang berisi logo dan navigasi utama.
+            {{-- Main Scrollable Area --}}
+            <div class="flex-1 overflow-y-auto p-4 lg:p-8">
+                {{ $slot }}
 
-```html
-        <aside 
-            class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0"
-            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-            x-cloak
-        >
-            <div class="flex flex-col h-full">
-                <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100"> ... </div>
-
-                <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto"> ... </nav>
-
-                <div class="p-4 border-t border-slate-100 bg-slate-50/50"> ... </div>
+                {{-- Footer --}}
+                <x-footer />
             </div>
-        </aside>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        document.addEventListener('alpine:init', () => {
+            Alpine.effect(() => {
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 10);
+            });
+        });
+    </script>
+</body>
+</html>
